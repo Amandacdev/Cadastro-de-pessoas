@@ -15,9 +15,9 @@ def menu():
   if(numero == 1):
     registrarContato()
   elif(numero == 2):
-    visualizarContatoIdade()
+    visualizarContato(1)
   elif(numero == 3):
-    categoriaContatoAlf()
+    visualizarContato(2)
   elif(numero == 4):
     categoriaContato()
   elif(numero == 5):
@@ -38,32 +38,37 @@ def registrarContato():
     listaNome.append(nome)
     listaIdade.append(idade)
 
-#Função para exibir lista de contatos - organizada por Idade
-def visualizarContatoIdade():
-  cadastroIdade = list(cadastro)
-  tam = len(cadastroIdade)
-  for i in range(tam-1):
-    for i in range(tam-1):
-      if(cadastroIdade[i][1]>cadastroIdade[i+1][1]):
-        aux = cadastroIdade[i]
-        cadastroIdade[i] = cadastroIdade[i+1]
-        cadastroIdade[i+1] = aux
-  print(cadastroIdade)
-
-#Função para exibir lista de contatos - organizada por Ordem Alfabética
-def categoriaContatoAlf():
+#Função para mostrar lista organizada por idade(se o orgumento for igual a 1) ou por ordem alfabética(se o argumento for igual a 2)
+def visualizarContato(a):
+  cadastroOrd = list(cadastro) 
   tam = len(cadastro)
-  for i in range(tam-1):
+
+  if(a == 1):
     for i in range(tam-1):
-      nome1 = cadastro[i][0]
-      nome2 = cadastro[i+1][0]
-      letra1 = (nome1[0]).upper()
-      letra2 = (nome2[0]).upper()
-      if(ord(letra1)>ord(letra2)):
-        aux = cadastro[i]
-        cadastro[i] = cadastro[i+1]
-        cadastro[i+1] = aux
-  print(cadastro)
+      for i in range(tam-1):
+        if(cadastroOrd[i][1]>cadastroOrd[i+1][1]):
+          aux = cadastroOrd[i]
+          cadastroOrd[i] = cadastroOrd[i+1]
+          cadastroOrd[i+1] = aux
+    print(cadastroOrd)
+  if(a == 2):
+    for k in range(tam-1):
+      for i in range(tam-1):
+        nome1 = cadastro[i][0]
+        nome2 = cadastro[i+1][0]
+        letra1 = (nome1[0]).upper()
+        letra2 = (nome2[0]).upper()
+        j = 1
+        while(ord(letra1) == ord(letra2)):
+          letra1 = (nome1[j]).upper()
+          letra2 = (nome2[j]).upper()
+          j += j
+
+        if(ord(letra1)>ord(letra2)):
+          aux = cadastro[i]
+          cadastro[i] = cadastro[i+1]
+          cadastro[i+1] = aux
+    print(cadastro)
 
 #Função para exibir contatos em categorias
 def categoriaContato():
