@@ -17,7 +17,7 @@ def menu():
   elif(numero == 2):
     visualizarContato(1)
   elif(numero == 3):
-    visualizarContato(2)
+    visualizarContato(0)
   elif(numero == 4):
     categoriaContato()
   elif(numero == 5):
@@ -38,37 +38,18 @@ def registrarContato():
     listaNome.append(nome)
     listaIdade.append(idade)
 
-#Função para mostrar lista organizada por idade(se o orgumento for igual a 1) ou por ordem alfabética(se o argumento for igual a 2)
+#Função para mostrar lista organizada por idade(se o argumento for igual a 1) ou por ordem alfabética(se a argumento for igual a 0)
 def visualizarContato(a):
   cadastroOrd = list(cadastro) 
   tam = len(cadastro)
 
-  if(a == 1):
+  for k in range(tam-1):
     for i in range(tam-1):
-      for i in range(tam-1):
-        if(cadastroOrd[i][1]>cadastroOrd[i+1][1]):
-          aux = cadastroOrd[i]
-          cadastroOrd[i] = cadastroOrd[i+1]
-          cadastroOrd[i+1] = aux
-    print(cadastroOrd)
-  if(a == 2):
-    for k in range(tam-1):
-      for i in range(tam-1):
-        nome1 = cadastro[i][0]
-        nome2 = cadastro[i+1][0]
-        letra1 = (nome1[0]).upper()
-        letra2 = (nome2[0]).upper()
-        j = 1
-        while(ord(letra1) == ord(letra2)):
-          letra1 = (nome1[j]).upper()
-          letra2 = (nome2[j]).upper()
-          j += j
-
-        if(ord(letra1)>ord(letra2)):
-          aux = cadastro[i]
-          cadastro[i] = cadastro[i+1]
-          cadastro[i+1] = aux
-    print(cadastro)
+      if(cadastroOrd[i][a]>cadastroOrd[i+1][a]):
+        aux = cadastroOrd[i]
+        cadastroOrd[i] = cadastroOrd[i+1]
+        cadastroOrd[i+1] = aux
+  print(cadastroOrd)
 
 #Função para exibir contatos em categorias
 def categoriaContato():
